@@ -1,0 +1,2 @@
+com.dubture.composer.corebuildpath.includes.excludes=<buildpathentry excluding\="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind\="src" path\="vendor"/>\r\n
+eclipse.preferences.version=1
