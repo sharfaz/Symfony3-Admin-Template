@@ -1,0 +1,8 @@
+ Road Map for the Affiliate Admin
+
+ 1. Login Page
+ 2. User Management and Role Management
+ 3. Display list of products under different category
+ 4. Mark top 5 products for homepage from different catgorires
+ 5. Add a tag to products
+ 6. Allow to upload new home page banner and define categories and products for the homepage banner
