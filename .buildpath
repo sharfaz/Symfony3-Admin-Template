@@ -32,6 +32,7 @@
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/psr/log"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/symfony/symfony/src/Symfony/Bridge/Doctrine"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/twig/twig/lib"/>
+	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/friendsofsymfony/user-bundle"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/doctrine/annotations/lib"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/symfony/polyfill-intl-icu"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="app"/>
