@@ -74,3 +74,10 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+        uglifyjs2:
+            # the path to the uglifyjs executable
+            bin: %kernel.root_dir%/Resources/node_modules/.bin/uglifyjs
+        uglifycss:
+            # the path to the uglifycss executable
+            bin: %kernel.root_dir%/Resources/node_modules/.bin/uglifycss
+
