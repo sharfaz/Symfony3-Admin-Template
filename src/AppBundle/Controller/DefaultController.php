@@ -31,6 +31,15 @@ class DefaultController extends Controller
     		'<html><body>Lucky Number: '.$number .'</html>'
     	);
     }
+
+    /**
+     * @Route("/dashboard", name="show_dashboard")
+     * @return [type] [description]
+     */
+    public function dashboardAction()
+    {
+        return $this->render('default/dashboard.html.twig');
+    }
     
     
 }
