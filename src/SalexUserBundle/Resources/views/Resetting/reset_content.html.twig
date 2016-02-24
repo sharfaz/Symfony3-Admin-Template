@@ -1,0 +1,48 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% form_theme form _self %}
+{# Overriding Form Elements #}
+{%- block password_widget -%}
+    {%- set type = type|default('password') -%}
+    <div class="form-group has-feedback">
+    	{{ block('form_widget_simple') }}
+    	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+    </div>
+{%- endblock password_widget -%}
+
+{%- block form_errors -%}
+    {%- if errors is defined and errors|length > 0 -%}
+    <div class="alert alert-danger alert-dismissible">
+        {%- for error in errors -%}
+            {{ error.message }}
+        {%- endfor -%}
+    </div>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{# This is individual form type error #}
+{%- block password_errors -%}
+    {%- if errors is defined and errors|length > 0 -%}
+    <div class="form-group has-error">
+        {%- for error in errors -%}
+            <label class="control-label">
+            	<i class="fa fa-times-circle-o"></i>
+            	{{ error.message }}
+         	</label>
+        {%- endfor -%}
+    </div>
+    {%- endif -%}
+{%- endblock password_errors -%}
+{# End of Overriding Form Elements #}
+
+{% block fos_user_content %}
+	{% include "SalexUserBundle:includes:loginWrapper.html.twig" %} 
+	{{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+	    {{ form_widget(form) }}
+	    <div>
+	        <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" class="btn btn-primary btn-block btn-flat" />
+	    </div>
+	{{ form_end(form) }}
+	</div> <!-- End of login-box-body -->
+</div><!-- End of login-box -->
+{% endblock %}

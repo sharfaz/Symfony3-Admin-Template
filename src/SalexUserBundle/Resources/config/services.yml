@@ -1,0 +1,5 @@
+services:
+    salex_user.resetting.form.type:
+        class: SalexUserBundle\Form\ResettingFormType
+        tags:
+            - { name: form.type, alias: salex_user_resetting }

@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@AdminUserBundle/Resources/config/services.yml" }
+    - { resource: "@SalexUserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -87,4 +87,15 @@ assetic:
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
-    user_class: AppBundle\Entity\User
+    user_class: SalexUserBundle\Entity\User
+    resetting:
+        form:
+            type: SalexUserBundle\Form\ResettingFormType
+
+# Doctrine Migration Bundle configurations
+# http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations

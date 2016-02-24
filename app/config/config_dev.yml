@@ -31,5 +31,12 @@ monolog:
         #    type:   chromephp
         #    level:  info
 
-#swiftmailer:
-#    delivery_address: me@example.com
+# https://mailtrap.io Setting
+# Login: sharfaz.sairaz@salary-exchange.co.uk, p: salaryexchange
+swiftmailer:
+    delivery_address: me@example.com
+    host: mailtrap.io
+    username: 573703992d8503
+    password: c0d98de3f8126b
+    auth_mode: cram-md5
+    port: 2525

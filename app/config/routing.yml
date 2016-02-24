@@ -1,7 +1,6 @@
-admin_user:
-    resource: "@AdminUserBundle/Controller/"
+salex_user:
+    resource: "@SalexUserBundle/Controller/"
     type:     annotation
-    prefix:   /
 
 app:
     resource: "@AppBundle/Controller/"

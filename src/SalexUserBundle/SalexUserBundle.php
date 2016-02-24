@@ -1,10 +1,10 @@
 <?php
 
-namespace AdminUserBundle;
+namespace SalexUserBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class AdminUserBundle extends Bundle
+class SalexUserBundle extends Bundle
 {
 	//get parent FOSUserbundle
 	public function getParent()

@@ -1,0 +1,22 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    {% include "SalexUserBundle:includes:loginWrapper.html.twig" %} 
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+        <div>
+            {% if invalid_username is defined %}
+                <div class="alert alert-danger alert-dismissible">{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}</div>
+            {% endif %}
+            <p>Enter your username or email address to reset the password. </p>
+            <div class="form-group has-feedback">
+                <input type="text" id="username" name="username" required="required" class="form-control" placeholder="{{ 'resetting.request.username'|trans }}" />
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            </div>
+        </div>
+        <div>
+            <input type="submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-primary btn-block btn-flat" />
+        </div>
+    </form>
+    </div> <!-- End of login-box-body -->
+</div><!-- End of login-box -->
+{% endblock fos_user_content %}
