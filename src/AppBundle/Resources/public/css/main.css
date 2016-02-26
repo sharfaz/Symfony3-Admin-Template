@@ -1,0 +1,12 @@
+.skin-blue .main-header .logo {
+    background-color: #fff;
+}
+.skin-blue .main-header .logo:hover {
+    background-color: #fff !important;
+}
+.main-header .logo .logo-lg img {
+   width: 150px;
+}
+.main-header .logo .logo-mini img {
+   width: 52px;
+}

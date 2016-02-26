@@ -9,3 +9,8 @@ app:
 #FOSUserBundle routing file
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# image processing bundle
+# https://github.com/liip/LiipImagineBundle
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

@@ -15,11 +15,18 @@ class AppKernel extends Kernel
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
-            new AppBundle\AppBundle(),
-            new SalexUserBundle\SalexUserBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new FOS\RestBundle\FOSRestBundle(), //rest service bundle
+            new FOS\UserBundle\FOSUserBundle(), //Doctrine User management bundle
+            new AppBundle\AppBundle(), //Our main application bundle
+            new SalexUserBundle\SalexUserBundle(), //Salex user management bundle
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(), //Symfony Assets management bundle
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(), //doctrine migration bundle
+            new Liip\ImagineBundle\LiipImagineBundle(), //image manipulation bundle
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(), //KNP menu bundle
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(), //Doctrine extension bundle
+            new Vich\UploaderBundle\VichUploaderBundle(), //file uploader bundle
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(), //CK Editor
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -27,7 +34,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(); //doctrine loading data bundle
         }
 
         return $bundles;

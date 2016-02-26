@@ -99,3 +99,39 @@ doctrine_migrations:
     namespace: Application\Migrations
     table_name: migration_versions
     name: Application Migrations
+
+# LiipImagineBundle image filters
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        profile_thumb:
+            quality: 75
+            filters:
+                thumbnail: { size: [25, 25], mode: outbound }
+
+# KNP Menu configuration
+# http://symfony.com/doc/master/bundles/KnpMenuBundle/index.html
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: knp_menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: false
+    # the renderer to use, list is also available by default
+    default_renderer: twig
+
+# File Uploader Bundle configuration
+#https://github.com/dustin10/VichUploaderBundle/blob/master/Resources/doc/installation.md
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+    mappings:
+        profile_image:
+            uri_prefix:         /images/profile
+            upload_destination: %kernel.root_dir%/../web/images/profile
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
