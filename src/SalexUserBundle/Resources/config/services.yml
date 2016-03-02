@@ -3,3 +3,8 @@ services:
         class: SalexUserBundle\Form\ResettingFormType
         tags:
             - { name: form.type, alias: salex_user_resetting }
+
+    salex_user.profile.form.type:
+        class: SalexUserBundle\Form\UserType
+        tags:
+            - { name: form.type, alias: salex_user_profile }

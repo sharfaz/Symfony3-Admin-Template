@@ -1,0 +1,40 @@
+{% extends "::master.html.twig" %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{% stylesheets 'bundles/app/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' filter='cssrewrite' %}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+{% endblock %}
+
+{% block body %}
+	{{ parent() }}
+{% endblock %}
+
+{% block page_header %} <i class="fa fa-fw fa-edit"></i> Edit Profile  {% endblock %}
+{% block page_header_description %} {{ app.user.getName() }} {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	{% javascripts '@AppBundle/Resources/public/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js' %}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	<script>
+		$(function(){
+			//$('.datepicker').datepicker();
+			//bootstrap WYSIHTML5 - text editor
+			$(".textarea").wysihtml5();
+		});
+	</script>
+{% endblock %}
+
+{% block page_content %}
+<div class="row">
+	<div class="col-md-6">
+		<div class="box box-primary">
+			{% include "SalexUserBundle:Profile:edit_content.html.twig" %}
+		</div> <!-- End of box-primary -->
+	</div> <!-- end of col-md-6 -->
+</div> <!-- End of Row -->
+{% endblock %}

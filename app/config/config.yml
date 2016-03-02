@@ -38,6 +38,10 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    form_themes:
+        # other form themes
+        - 'VichUploaderBundle:Form:fields.html.twig'
+        - 'bootstrap_3_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -91,6 +95,9 @@ fos_user:
     resetting:
         form:
             type: SalexUserBundle\Form\ResettingFormType
+    profile:
+        form:
+            type: SalexUserBundle\Form\UserType
 
 # Doctrine Migration Bundle configurations
 # http://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html
@@ -108,10 +115,10 @@ liip_imagine:
 
     filter_sets:
         cache: ~
-        profile_thumb:
-            quality: 75
+        profile_picture:
+            quality: 90
             filters:
-                thumbnail: { size: [25, 25], mode: outbound }
+                thumbnail: { size: [100, 100], mode: outbound }
 
 # KNP Menu configuration
 # http://symfony.com/doc/master/bundles/KnpMenuBundle/index.html
@@ -132,6 +139,11 @@ vich_uploader:
         profile_image:
             uri_prefix:         /images/profile
             upload_destination: %kernel.root_dir%/../web/images/profile
+            namer: vich_uploader.namer_origname
             inject_on_load:     false
             delete_on_update:   true
             delete_on_remove:   true
+
+#https://github.com/whiteoctober/BreadcrumbsBundle
+white_october_breadcrumbs:
+    separator: ''

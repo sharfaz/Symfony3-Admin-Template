@@ -5,6 +5,8 @@ namespace SalexUserBundle\Entity;
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -13,6 +15,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table(name="salex_admin.users")
  * @ORM\Entity(repositoryClass="SalexUserBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks
+ * @Vich\Uploadable
  */
 class User extends BaseUser
 {
@@ -48,6 +51,12 @@ class User extends BaseUser
     protected $startDate;
 
     /**
+     * @Assert\Image(
+     *     maxSize="3M",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"},
+     *     maxWidth=250,
+     *     maxHeight=250
+     * )
      * @Vich\UploadableField(mapping="profile_image", fileNameProperty="profile_picture")
      * @var [type]
      */
@@ -81,9 +90,9 @@ class User extends BaseUser
     private $notes;
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="skills", type="simple_array", nullable=true)
+     * @ORM\Column(name="skills", type="string", nullable=true)
      */
     private $skills;
 
@@ -98,6 +107,8 @@ class User extends BaseUser
      * @var datetime $createdAt
      *
      * @ORM\Column(name="created_at", type="datetime")
+     * @Assert\Type("\DateTime")
+     * 
      */
     private $createdAt;
 
@@ -105,6 +116,8 @@ class User extends BaseUser
      * @var datetime $updatedAt
      * 
      * @ORM\Column(name="updated_at", type="datetime", nullable = true)
+     * @Assert\Type("\DateTime")
+     * 
      */
     private $updateAt;
     
@@ -238,9 +251,15 @@ class User extends BaseUser
      *
      * @return self
      */
-    public function setProfilePictureFile($profile_picture_file)
+    public function setProfilePictureFile(File $profile_picture_file)
     {
         $this->profile_picture_file = $profile_picture_file;
+
+        // Only change the updated af if the file is really uploaded to avoid database updates.
+        // This is needed when the file should be set when loading the entity.
+        if ($this->profile_picture_file instanceof UploadedFile) {
+            $this->setUpdateAt(new Carbon());
+        }
 
         return $this;
     }
@@ -344,7 +363,7 @@ class User extends BaseUser
     /**
      * Set skills
      *
-     * @param array $skills
+     * @param string $skills
      *
      * @return User
      */
@@ -358,7 +377,7 @@ class User extends BaseUser
     /**
      * Get skills
      *
-     * @return array
+     * @return string
      */
     public function getSkills()
     {
@@ -389,6 +408,18 @@ class User extends BaseUser
         return $this->address;
     }
 
+    public function getLastLogin( $human_readable = false)
+    {
+        $last_login = parent::getLastLogin();
+        $carbon = Carbon::instance($last_login);
+
+        if ( $human_readable ) {
+            return $carbon->diffForHumans();
+        }
+
+        return $carbon->toDateTimeString();
+    }
+
     /**
      * Gets triggered only on insert
 
@@ -409,4 +440,52 @@ class User extends BaseUser
         $this->updateAt = new Carbon();
     }
 
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return User
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updateAt
+     *
+     * @param \DateTime $updateAt
+     *
+     * @return User
+     */
+    public function setUpdateAt($updateAt)
+    {
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updateAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdateAt()
+    {
+        return $this->updateAt;
+    }
 }

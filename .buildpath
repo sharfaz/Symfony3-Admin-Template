@@ -10,6 +10,7 @@
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/symfony/polyfill-php56"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/|Resources/stubs/" kind="src" path="vendor/symfony/polyfill-php70"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/doctrine/doctrine-bundle"/>
+	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/nesbot/carbon/src/Carbon"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/symfony/polyfill-mbstring"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/jms/parser-lib/src"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/incenteev/composer-parameter-handler"/>
@@ -48,8 +49,10 @@
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/doctrine/collections/lib"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/zendframework/zend-eventmanager/src"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/phpcollection/phpcollection/src"/>
+	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/egeloen/json-builder/src"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/behat/transliterator/src"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/doctrine/doctrine-migrations-bundle"/>
+	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/egeloen/ckeditor-bundle"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/zendframework/zend-code/src"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/jms/metadata/src"/>
 	<buildpathentry excluding="**/skeleton/|**/Test*/|**/CG/**/Fixture/" kind="src" path="vendor/doctrine/dbal/lib"/>

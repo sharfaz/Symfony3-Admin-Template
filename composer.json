@@ -37,7 +37,9 @@
         "stof/doctrine-extensions-bundle": "^1.2",
         "vich/uploader-bundle": "dev-master",
         "nesbot/carbon": "^1.21",
-        "egeloen/ckeditor-bundle": "^4.0"
+        "egeloen/ckeditor-bundle": "^4.0",
+        "whiteoctober/breadcrumbs-bundle": "^1.2",
+        "hospect/php-vars-to-js-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

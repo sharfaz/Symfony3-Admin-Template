@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(), //Doctrine extension bundle
             new Vich\UploaderBundle\VichUploaderBundle(), //file uploader bundle
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(), //CK Editor
+            new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(), //breadcrumbs
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -16,9 +16,15 @@
               <!-- Profile Image -->
               <div class="box box-primary">
                 <div class="box-body box-profile">
-                  <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+                  {% set profile_picture_path = 'bundles/app/images/user-avatar.png' %}
+                  {% if user.getProfilePicture() is not empty %}
+                    {% set profile_picture_path = 'images/profile/'~ user.getProfilePicture() %}
+                  {% endif %}
+                  
+                  <img class="profile-user-img img-responsive img-circle" src="{{ asset( profile_picture_path ) }}" alt="User profile picture">
                   <h3 class="profile-username text-center"> {{ user.getName() }}</h3>
                   <p class="text-muted text-center">PHP Developer</p>
+                  <p class="text-muted text-center"><b>Last login </b>{{ user.getLastLogin(true) }}</p>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
 
@@ -28,31 +34,36 @@
                   <h3 class="box-title">About Me</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                  <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
-                  <p class="text-muted">
-                    B.S. in Computer Science and Business Management from the University of Keele, United Kingdom
-                  </p>
+                  {% if user.getEducation() is not empty %}
+                    <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
+                    <p class="text-muted">
+                      {{ user.getEducation() }}
+                    </p>
+                     <hr>
+                  {% endif %}
+                 
+                  {% if user.getAddress() is not empty %}
+                    <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+                    <p class="text-muted">{{ user.getAddress()|raw }}</p>
+                    <hr>
+                  {% endif %}
 
-                  <hr>
+                  {% if user.getSkills() is not empty %}
+                    {% set skills = user.getSkills()|split(',') %}
+                    <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+                    <p>
+                      {% for skill in skills %}
+                          <span class="label label-info">{{ skill|upper }}</span>
+                      {% endfor %}
+                    </p>
 
-                  <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-                  <p class="text-muted">Stoke On Trent, United Kingdom</p>
+                    <hr>
+                  {% endif %}
 
-                  <hr>
-
-                  <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-                  <p>
-                    <span class="label label-danger">Symfony</span>
-                    <span class="label label-success">HTMl/CSS</span>
-                    <span class="label label-info">Javascript</span>
-                    <span class="label label-warning">PHP</span>
-                    <span class="label label-primary">Node.js</span>
-                  </p>
-
-                  <hr>
-
+                  {% if user.getNotes() is not empty %}
                   <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-                  <p>More to Come</p>
+                    <p>{{ user.getNotes()|raw }}</p>
+                  {% endif %}
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
             </div><!-- /.col -->
@@ -61,57 +72,107 @@
              <div class="col-md-9">
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                  <li class="active"><a href="#activity" data-toggle="tab">User Details</a></li>
+                  <li class="active"><a href="#activity" data-toggle="tab">Account Details</a></li>
+                  <li><a href="#roles-and-permission" data-toggle="tab">Roles and Permissions</a></li>
+                  <li><a href="#change-password" data-toggle="tab">Change Password</a></li>
                 </ul>
                 <div class="tab-content">
                   <div class="active tab-pane" id="activity">
-                    <form class="form-horizontal">
+                    <div class="form-horizontal">
+                      <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control active" placeholder="{{ user.getUsername() }}" readonly>
+                        </div>
+                      </div>
                       <div class="form-group">
                         <label for="inputName" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
+                          <input type="text" class="form-control active" placeholder="{{ user.getName() }}" readonly>
                         </div>
                       </div>
                       <div class="form-group">
                         <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                          <input type="email" class="form-control active" placeholder="{{ user.getEmail() }}" readonly>
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputName" class="col-sm-2 control-label">Name</label>
+                        <label for="inputExperience" class="col-sm-2 control-label">Enabled</label>
                         <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName" placeholder="Name">
+                          {% if user.isEnabled() %}
+                            <p class="form-text"><span class="label label-success">Enabled</span></p>
+                          {% else %}
+                              <p class="form-text"><span class="label label-danger">Disabled</span></p>
+                          {% endif %}
                         </div>
                       </div>
                       <div class="form-group">
-                        <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                        <label for="inputSkills" class="col-sm-2 control-label">Start Date</label>
                         <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="inputSkills" class="col-sm-2 control-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                            <input type="text" class="form-control pull-right active" placeholder="{{ user.getStartDate|date('Y-m-d') }}" readonly>
                           </div>
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
+                        <label for="inputExperience" class="col-sm-2 control-label">Locked</label>
+                        <div class="col-sm-1">
+                          {% if user.isLocked() %}
+                            <p class="form-text" title="Account is locked" data-toggle="tooltip" data-placement="right"><i class="fa fa-fw fa-lock"></i></p>
+                          {% else %}
+                            <p class="form-text" title="Account is not locked" data-toggle="tooltip" data-placement="right"><i class="fa fa-fw fa-unlock-alt"></i></p>
+                          {% endif %}
                         </div>
                       </div>
-                    </form>
+
+                      <div class="form-group">
+                        <label for="inputExperience" class="col-sm-2 control-label">Expired</label>
+                        <div class="col-sm-1">
+                          {% if user.isExpired() %}
+                            <p class="form-text"><span class="label label-danger">Expired</span></p>
+                          {% else %}
+                            <p class="form-text"><span class="label label-info">Not Expired</span></i></p>
+                          {% endif %}
+                        </div>
+                      </div>
+              
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                          <a class="btn btn-default" href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-fw fa-edit"></i>Edit profile</a>
+                        </div>
+                      </div>
+
+                    </div>
                   </div><!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="roles-and-permission">
+                      {% if user.getRoles() is not empty %}
+                      <table class="table table-bordered">
+                        <tbody>
+                          <tr>
+                            <th>Role</th>
+                            <th>Enabled</th>
+                          </tr>
+                          {% for role in user.getRoles() %}
+                            <tr>
+                              <td>{{ role|upper }}</td>
+                              <td><span class="badge bg-green">Enabled</span></td>
+                            </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                      {% endif %}
+                  </div>
+
+                   <div class="tab-pane" id="change-password">
+                      <p class="text-aqua">Please click the link below to change your current password</p>
+                     <div><a href="{{ path('fos_user_change_password') }}" class="btn btn-default"><i class="fa fa-fw fa-lock"></i>Change Password</a></div>
+                  </div>
+              
                 </div><!-- /.tab-content -->
               </div><!-- /.nav-tabs-custom -->
             </div><!-- /.col -->

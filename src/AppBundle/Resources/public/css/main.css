@@ -1,3 +1,13 @@
+.content-wrapper {
+    min-height: 850px;
+}
+.flash-messages {
+    padding: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 .skin-blue .main-header .logo {
     background-color: #fff;
 }
@@ -9,4 +19,10 @@
 }
 .main-header .logo .logo-mini img {
    width: 52px;
+}
+.nav>li>a>img {
+	width: 17px;
+}
+.form-text { 
+	margin-top: 7px;
 }
