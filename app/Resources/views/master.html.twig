@@ -89,8 +89,13 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
+                            {% if app.user.getProfilePicture() is not empty %}
+                              <img src="{{ asset('images/profile/'~ app.user.getProfilePicture() ) }}" class="img-circle" alt="User Image" />
+                            {% else %}
+                              <img src="http://lorempixel.com/g/90/90/people" class="img-circle" alt="User Image" />
+                            {% endif %}
                             <!-- User Image -->
-                            <img src="{{ asset('images/profile/'~ app.user.getProfilePicture() ) }}" class="img-circle" alt="User Image" />
+
                           </div>
                           <!-- Message title and timestamp -->
                           <h4>
@@ -169,14 +174,22 @@
                 <!-- Menu Toggle Button -->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <!-- The user image in the navbar-->
-                  <img src="{{ asset('images/profile/'~ app.user.getProfilePicture() ) }}" class="img-circle" alt="User Image" />
+                  {% if app.user.getProfilePicture() is not empty %}
+                    <img src="{{ asset('images/profile/'~ app.user.getProfilePicture() ) }}" class="img-circle" alt="User Image" />
+                  {% else %}
+                    <img src="http://lorempixel.com/g/90/90/people" class="img-circle" alt="User Image" />
+                  {% endif %}
                   <!-- hidden-xs hides the username on small devices so only the image appears. -->
                   <span class="hidden-xs">{{ app.user.getName()|title }}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- The user image in the menu -->
                   <li class="user-header">
-                    <img src="{{ asset('images/profile/'~ app.user.getProfilePicture() ) }}" class="img-circle" alt="User Image" />
+                    {% if app.user.getProfilePicture() is not empty %}
+                      <img src="{{ asset('images/profile/'~ app.user.getProfilePicture() ) }}" class="img-circle" alt="User Image" />
+                    {% else %}
+                      <img src="http://lorempixel.com/g/150/150/people" class="img-circle" alt="User Image" />
+                    {% endif %}
                     <p>
                       {{ app.user.getName()|title }}
                       <small>Employed since {{ app.user.getStartDate()|date('M, Y') }}</small>
@@ -210,7 +223,11 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel">
             <div class="pull-left image">
-              <img src="{{ asset('images/profile/'~ app.user.getProfilePicture() ) }}" class="img-circle" alt="User Image" />
+              {% if app.user.getProfilePicture() is not empty %}
+                <img src="{{ asset('images/profile/'~ app.user.getProfilePicture() ) }}" class="img-circle" alt="User Image" />
+              {% else %}
+                <img src="http://lorempixel.com/g/90/90/people" class="img-circle" alt="User Image" />
+              {% endif %}
             </div>
             <div class="pull-left info">
               <p>{{ app.user.getName()|title }}</p>

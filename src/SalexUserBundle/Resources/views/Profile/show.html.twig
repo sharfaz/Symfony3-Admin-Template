@@ -16,7 +16,7 @@
               <!-- Profile Image -->
               <div class="box box-primary">
                 <div class="box-body box-profile">
-                  {% set profile_picture_path = 'bundles/app/images/user-avatar.png' %}
+                  {% set profile_picture_path = 'http://lorempixel.com/g/150/150/people' %}
                   {% if user.getProfilePicture() is not empty %}
                     {% set profile_picture_path = 'images/profile/'~ user.getProfilePicture() %}
                   {% endif %}
