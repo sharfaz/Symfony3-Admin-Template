@@ -22,3 +22,7 @@ newsalexadmin.sublime-workspace
 .buildpath
 .gitignore
 .project
+web/js/*
+web/css/*
+web/images/*
+.idea/*
