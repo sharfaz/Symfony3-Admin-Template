@@ -1,0 +1,175 @@
+{% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
+<!doctype html>
+<!--[if lt IE 7 ]><html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]><html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]><html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]><html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>{% block title %}Your Company!{% endblock %}</title>
+
+    {# -------------------------------------------------------------------------------------------------- STYLESHEETS #}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+        <link rel="stylesheet" href="{{ asset('bundles/avanzuadmintheme/static/'~ app.environment ~'/styles/admin-lte-all.css') }}" />
+    {% endblock %}
+
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {# --------------------------------------------------------------------------------------------- JAVASCRIPTS_HEAD #}
+    {%  block javascripts_head %}
+        <script type="text/javascript" src="{{ asset('bundles/avanzuadmintheme/static/'~app.environment~'/scripts/modernizr.js') }}"></script>
+        <!--[if lt IE 9]>
+
+        <![endif]-->
+
+    {% endblock %}
+
+</head>
+<body class="{{ admin_skin|default('skin-blue')}}">
+<div class="wrapper">
+
+    {% block avanzu_admin_header %}
+        <header class="main-header">
+            {% block avanzu_logo %}
+                <a href="{{ path('homepage') }}" class="logo">
+                    <!-- Add the class icon to your logo image or logo icon to add the margining -->
+                    {{ block('title') }}
+                </a>
+            {% endblock %}
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                {% if app.user is not null and is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            {% block avanzu_navbar %}
+                                {{ render(controller('AvanzuAdminThemeBundle:Navbar:messages')) }}
+                                {{ render(controller('AvanzuAdminThemeBundle:Navbar:notifications')) }}
+                                {{ render(controller('AvanzuAdminThemeBundle:Navbar:tasks')) }}
+                                {{ render(controller('AppBundle:Navbar:user')) }}
+                            {% endblock %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </nav>
+        </header>
+    {% endblock %}
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar sidebar-offcanvas">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            {% block avanzu_sidebar %}
+                {% if app.user is not null and is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ render(controller('AppBundle:Sidebar:userPanel')) }}
+                    {{ render(controller('AvanzuAdminThemeBundle:Sidebar:searchForm')) }}
+                {% endif %}
+                {{ render(controller('AvanzuAdminThemeBundle:Sidebar:menu', {'request':app.request})) }}
+            {% endblock %}
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Right side column. Contains the navbar and content of the page -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                {% block page_title %}Blank page{% endblock %}
+                <small>{% block page_subtitle %}Control panel{% endblock %}</small>
+            </h1>
+            {% block avanzu_breadcrumb %}
+                {{ render(controller('AvanzuAdminThemeBundle:Breadcrumb:breadcrumb', {'request':app.request, 'title' : block('page_title')})) }}
+            {% endblock %}
+        </section>
+
+        <!-- Alert Boxes -->
+        {% if app.session.flashBag.has('success')
+        or app.session.flashBag.has('error')
+        or app.session.flashBag.has('notice')
+        %}
+            <section class="flash-messages">
+                <div class="row">
+                    <div class="col-md-12">
+                        {% if app.session.flashBag.has('success') %}
+                            <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                                {% for msg in app.session.flashBag.get('success') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if app.session.flashBag.has('error') %}
+                            <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-ban"></i> Error!</h4>
+                                {% for msg in app.session.flashBag.get('error') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if app.session.flashBag.has('notice') %}
+                            <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-info"></i> Notice!</h4>
+                                {% for msg in app.session.flashBag.get('notice') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        {% if app.session.flashBag.has('warning') %}
+                            <div class="alert alert-info alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-warning"></i> Warning!</h4>
+                                {% for msg in app.session.flashBag.get('warning') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+        {% endif %}
+
+        <!-- Main content -->
+        <section class="content">
+            {% block page_content %}{% endblock %}
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    {% block avanzu_admin_footer %}
+        <footer class="main-footer">
+            <strong>Copyright &copy; {{ "now"|date("Y") }} <a href="http://www.salary-exchange.co.uk" target="_blank">The Salary Exchange Limited
+        </footer>
+    {% endblock %}
+
+</div>
+<!-- ./wrapper -->
+
+{# ------------------------------------------------------------------------------------------------------ JAVASCRIPTS #}
+{% block javascripts %}
+
+    <script src="{{ asset('bundles/avanzuadmintheme/static/'~app.environment~'/scripts/admin-lte-all.js') }}"></script>
+
+{% endblock %}
+
+{# ----------------------------------------------------------------------------------------------- JAVASCRIPTS_INLINE #}
+{% block javascripts_inline %}
+{% endblock %}
+</body>
+</html>

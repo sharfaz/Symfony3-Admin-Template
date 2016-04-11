@@ -1,0 +1,13 @@
+{% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
+<!-- Sidebar user panel -->
+<div class="user-panel">
+    <div class="pull-left image">
+    {% set user_image = 'images/profile/'~ user.getProfilePicture() %}
+    {{ macro.avatar(user_image, user.username)  }}
+    </div>
+    <div class="pull-left info">
+        <p>{{ user.getName()|title }}</p>
+
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    </div>
+</div>

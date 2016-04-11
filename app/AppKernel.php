@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(), //file uploader bundle
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(), //CK Editor
             new WhiteOctober\BreadcrumbsBundle\WhiteOctoberBreadcrumbsBundle(), //breadcrumbs
+            new Avanzu\AdminThemeBundle\AvanzuAdminThemeBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

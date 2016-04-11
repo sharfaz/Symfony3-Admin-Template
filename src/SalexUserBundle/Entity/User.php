@@ -2,6 +2,7 @@
 
 namespace SalexUserBundle\Entity;
 
+use Avanzu\AdminThemeBundle\Model\UserInterface as ThemeUser;
 use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
@@ -17,7 +18,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
  */
-class User extends BaseUser
+class User extends BaseUser implements ThemeUser
 {
     /**
      * @var int
@@ -487,5 +488,35 @@ class User extends BaseUser
     public function getUpdateAt()
     {
         return $this->updateAt;
+    }
+
+    public function getAvatar()
+    {
+        return $this->getProfilePicture();
+    }
+
+    public function getUsername()
+    {
+        return parent::getUsername();
+    }
+
+    public function getMemberSince()
+    {
+        return $this->getstartDate();
+    }
+
+    public function isOnline()
+    {
+        return true;
+    }
+
+    public function getIdentifier()
+    {
+        return '';
+    }
+
+    public function getTitle()
+    {
+        return '';
     }
 }

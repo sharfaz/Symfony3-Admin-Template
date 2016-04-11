@@ -25,4 +25,6 @@ newsalexadmin.sublime-workspace
 web/js/*
 web/css/*
 web/images/*
+web/assetic
+.idea
 .idea/*

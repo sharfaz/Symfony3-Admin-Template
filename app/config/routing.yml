@@ -6,6 +6,9 @@ app:
     resource: "@AppBundle/Controller/"
     type:     annotation
 
+avanzu_admin:
+    resource: "@AvanzuAdminThemeBundle/Resources/config/routes.yml"
+    
 #FOSUserBundle routing file
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
@@ -14,3 +17,6 @@ fos_user:
 # https://github.com/liip/LiipImagineBundle
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+avanzu_admin_profile:
+    path: /profile

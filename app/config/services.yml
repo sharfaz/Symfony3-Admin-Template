@@ -7,3 +7,16 @@ services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    salex_user_bundle.user_profile_listener:
+        class: SalexUserBundle\EventListener\UserProfileListener
+        arguments:
+            - "@security.token_storage"
+        tags:
+            - { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
+            - { name: kernel.event_listener, event: theme.sidebar_user, method: onShowUser }
+
+    app_bundle.menu_listener:
+        class: AppBundle\EventListener\SidebarListener
+        tags:
+            - { name: kernel.event_listener, event:theme.sidebar_setup_menu, method:onSetupMenu }
+            - { name: kernel.event_listener, event:theme.breadcrumb, method:onSetupMenu }
