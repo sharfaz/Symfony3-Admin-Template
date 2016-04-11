@@ -12,15 +12,13 @@ This project comes with pre installed Symfony recommended and useful bundles to 
 Installation is very easy and simple. Please follow the instruction below
 
 1. Clone a copy of this repository.
-
-
 ```
 #!
 
 git clone https://msharfaz@bitbucket.org/msharfaz/symfony3-admin-template.git
 ```
 
-2. Create a database call **'symfony'** if not already exists.
+2. Create a database **'symfony'** if not already exists.
 
 
 3. Pull the dependencies using composer. (Assume composer already installed)
