@@ -152,3 +152,4 @@ white_october_breadcrumbs:
 
 avanzu_admin_theme:
     bower_bin: C:\Users\sharfazsairaz\AppData\Roaming\npm\bower.cmd # that's the default value
+    #bower_bin: usr/local/bin/bower #for linux system

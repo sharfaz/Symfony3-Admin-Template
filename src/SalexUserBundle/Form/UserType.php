@@ -23,26 +23,14 @@ class UserType extends AbstractType
             ->add('email', EmailType::class, array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('firstName')
             ->add('lastName')
-            ->add('startDate', DateType::class, array(
+            ->add('createdAt', DateType::class, array(
                 'widget' => 'single_text',
             ))
             ->add('profile_picture_file', VichImageType::class, array(
                     'required'   => false,
                     'label'      => 'Profile Picture'
-                ))
-            ->add('jobRole')
-            ->add('education')
-            ->add('notes', TextareaType::class, array(
-                'attr' => array(
-                    'class' => 'textarea'
                 )
-            ))
-            ->add('skills')
-            ->add('address', TextareaType::class, array(
-                'attr' => array(
-                    'class' => 'textarea'
-                )
-            ))
+            )
         ;
     }
 

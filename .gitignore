@@ -28,3 +28,4 @@ web/images/*
 web/assetic
 .idea
 .idea/*
+node_modules

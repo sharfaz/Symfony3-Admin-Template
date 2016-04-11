@@ -1,10 +1,8 @@
 {% extends "layout/base-layout.html.twig" %}
 
-{% block body %}
-	{{ parent() }}
-{% endblock %}
+{% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
 
-{% block page_header %} Profile {% endblock %}
+{% block page_title %} Profile {% endblock %}
 
 {% block page_content %}
 
@@ -16,56 +14,17 @@
               <!-- Profile Image -->
               <div class="box box-primary">
                 <div class="box-body box-profile">
-                  {% set profile_picture_path = 'http://lorempixel.com/g/150/150/people' %}
+                  {% set profile_picture_path = false %}
                   {% if user.getProfilePicture() is not empty %}
                     {% set profile_picture_path = 'images/profile/'~ user.getProfilePicture() %}
                   {% endif %}
-                  
-                  <img class="profile-user-img img-responsive img-circle" src="{{ asset( profile_picture_path ) }}" alt="User profile picture">
+
+                  {{ macro.avatar(profile_picture_path, user.username, 'profile-user-img img-responsive img-circle') }}
                   <h3 class="profile-username text-center"> {{ user.getName() }}</h3>
-                  <p class="text-muted text-center">PHP Developer</p>
                   <p class="text-muted text-center"><b>Last login </b>{{ user.getLastLogin(true) }}</p>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
 
-              <!-- About Me Box -->
-              <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">About Me</h3>
-                </div><!-- /.box-header -->
-                <div class="box-body">
-                  {% if user.getEducation() is not empty %}
-                    <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
-                    <p class="text-muted">
-                      {{ user.getEducation() }}
-                    </p>
-                     <hr>
-                  {% endif %}
-                 
-                  {% if user.getAddress() is not empty %}
-                    <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-                    <p class="text-muted">{{ user.getAddress()|raw }}</p>
-                    <hr>
-                  {% endif %}
-
-                  {% if user.getSkills() is not empty %}
-                    {% set skills = user.getSkills()|split(',') %}
-                    <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-                    <p>
-                      {% for skill in skills %}
-                          <span class="label label-info">{{ skill|upper }}</span>
-                      {% endfor %}
-                    </p>
-
-                    <hr>
-                  {% endif %}
-
-                  {% if user.getNotes() is not empty %}
-                  <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
-                    <p>{{ user.getNotes()|raw }}</p>
-                  {% endif %}
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
             </div><!-- /.col -->
 
 
@@ -114,7 +73,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
                             </div>
-                            <input type="text" class="form-control pull-right active" placeholder="{{ user.getStartDate|date('Y-m-d') }}" readonly>
+                            <input type="text" class="form-control pull-right active" placeholder="{{ user.getMemberSince()|date('Y-m-d') }}" readonly>
                           </div>
                         </div>
                       </div>

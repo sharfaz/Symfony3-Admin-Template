@@ -7,9 +7,11 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="">
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>{% block title %}Your Company!{% endblock %}</title>
 
     {# -------------------------------------------------------------------------------------------------- STYLESHEETS #}
@@ -31,7 +33,28 @@
     {% endblock %}
 
 </head>
-<body class="{{ admin_skin|default('skin-blue')}}">
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to get the
+desired effect
+|---------------------------------------------------------|
+| SKINS         | skin-blue                               |
+|               | skin-black                              |
+|               | skin-purple                             |
+|               | skin-yellow                             |
+|               | skin-red                                |
+|               | skin-green                              |
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | fixed                                   |
+|               | layout-boxed                            |
+|               | layout-top-nav                          |
+|               | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+
+<body class="{{ admin_skin|default('skin-blue')}} sidebar-mini">
 <div class="wrapper">
 
     {% block avanzu_admin_header %}
@@ -84,11 +107,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                {% block page_title %}Blank page{% endblock %}
+                {% block page_title %}Page Title{% endblock %}
                 <small>{% block page_subtitle %}Control panel{% endblock %}</small>
             </h1>
             {% block avanzu_breadcrumb %}
-                {{ render(controller('AvanzuAdminThemeBundle:Breadcrumb:breadcrumb', {'request':app.request, 'title' : block('page_title')})) }}
+                {{ render(controller('AppBundle:Breadcrumb:breadcrumb', {'request':app.request, 'title' : block('page_title')})) }}
             {% endblock %}
         </section>
 
@@ -97,7 +120,7 @@
         or app.session.flashBag.has('error')
         or app.session.flashBag.has('notice')
         %}
-            <section class="flash-messages">
+            <section class="flash-messages content-header">
                 <div class="row">
                     <div class="col-md-12">
                         {% if app.session.flashBag.has('success') %}
@@ -154,7 +177,7 @@
 
     {% block avanzu_admin_footer %}
         <footer class="main-footer">
-            <strong>Copyright &copy; {{ "now"|date("Y") }} <a href="http://www.salary-exchange.co.uk" target="_blank">The Salary Exchange Limited
+            <strong>Copyright &copy; {{ "now"|date("Y") }} <a href="#" target="_blank">The Example Company Limited
         </footer>
     {% endblock %}
 

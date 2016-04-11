@@ -1,6 +1,9 @@
 <!-- User Account: style can be found in dropdown.less -->
 {% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
-{% set user_image = 'images/profile/'~ user.getProfilePicture() %}
+{% set user_image = false %}
+{% if user.getProfilePicture() is not empty %}
+    {% set user_image = 'images/profile/'~ user.getProfilePicture() %}
+{% endif %}
 <li class="dropdown user user-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         {{ macro.avatar(user_image, user.username, 'user-image') }}

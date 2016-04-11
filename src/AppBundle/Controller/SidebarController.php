@@ -1,9 +1,4 @@
 <?php
-/**
- * SidebarController.php
- * avanzu-admin
- * Date: 23.02.14
- */
 
 namespace AppBundle\Controller;
 

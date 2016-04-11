@@ -39,7 +39,6 @@ class ChangePasswordController extends Controller
             throw new AccessDeniedException('This user does not have access to this section.');
         }
         $breadcrumbs = $this->get("white_october_breadcrumbs");
-        //Home
         $breadcrumbs->addRouteItem("Home", "homepage");
         $breadcrumbs->addRouteItem("Profile", "fos_user_profile_show");
         $breadcrumbs->addRouteItem("Change Password", "fos_user_change_password");

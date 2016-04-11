@@ -1,0 +1,18 @@
+{% if wo_render_breadcrumbs() is not empty %}
+    {{ wo_render_breadcrumbs() }}
+{% else %}
+<ol class="breadcrumb">
+    <li>
+        <a href="{{ path('homepage') }}">
+            <i class="fa fa-dashboard"></i>
+            {{ 'Home'|trans({}, 'AvanzuAdminTheme') }}
+        </a>
+    </li>
+    {% if active %}
+        {% for item in active %}
+            <li><a href="{{ item.route is empty ? '#' : '/' in item.route ? item.route : path(item.route, item.routeArgs) }}">{{ item.label }}</a></li>
+        {% endfor %}
+    {% endif %}
+    <li class="active">{{ title }}</li>
+</ol>
+{% endif %}

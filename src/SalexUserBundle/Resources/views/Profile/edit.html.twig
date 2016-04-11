@@ -1,5 +1,8 @@
 {% extends "layout/base-layout.html.twig" %}
 
+{% block page_title %}Edit Profile  {% endblock %}
+{% block page_subtitle %} {{ app.user.getName() }} {% endblock %}
+
 {% block page_content %}
 <div class="row">
 	<div class="col-md-6">

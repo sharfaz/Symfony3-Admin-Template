@@ -35,11 +35,6 @@ class ProfileController extends Controller
      */
     public function showAction()
     {
-        $breadcrumbs = $this->get("white_october_breadcrumbs");
-        //Home
-        $breadcrumbs->addRouteItem("Home", "homepage");
-        $breadcrumbs->addRouteItem("Profile", "fos_user_profile_show");
-
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -61,7 +56,6 @@ class ProfileController extends Controller
         }
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
-        //Home
         $breadcrumbs->addRouteItem("Home", "homepage");
         $breadcrumbs->addRouteItem("Profile", "fos_user_profile_show");
         $breadcrumbs->addRouteItem("Edit Profile", "fos_user_profile_edit");
@@ -91,6 +85,7 @@ class ProfileController extends Controller
             $event = new FormEvent($form, $request);
             $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
+            $user->setUpdateAt(new \DateTime());
             $userManager->updateUser($user);
 
             if (null === $response = $event->getResponse()) {

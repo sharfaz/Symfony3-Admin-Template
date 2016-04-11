@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * User
  *
- * @ORM\Table(name="salex_admin.users")
+ * @ORM\Table(name="users")
  * @ORM\Entity(repositoryClass="SalexUserBundle\Repository\UserRepository")
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
@@ -44,14 +44,6 @@ class User extends BaseUser implements ThemeUser
     protected $lastName;
 
     /**
-     * @var string
-     * 
-     * @ORM\Column(name="start_date", type="date", nullable=true)
-     * 
-     */
-    protected $startDate;
-
-    /**
      * @Assert\Image(
      *     maxSize="3M",
      *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"},
@@ -69,40 +61,6 @@ class User extends BaseUser implements ThemeUser
      */
     private $profilePicture;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="job_role", type="string", length=255, nullable=true)
-     */
-    private $jobRole;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="education", type="string", length=255, nullable=true)
-     */
-    private $education;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="notes", type="text", nullable=true)
-     */
-    private $notes;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="skills", type="string", nullable=true)
-     */
-    private $skills;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="address", type="text", nullable=true)
-     */
-    private $address;
 
     /**
      * @var datetime $createdAt
@@ -198,30 +156,6 @@ class User extends BaseUser implements ThemeUser
     }
 
     /**
-     * Set Start date
-     *
-     * @param string $startDate
-     *
-     * @return User
-     */
-    public function setStartDate($startDate)
-    {
-        $this->startDate = $startDate;
-
-        return $this;
-    }
-
-    /**
-     * Get startDate
-     *
-     * @return string
-     */
-    public function getstartDate()
-    {
-        return $this->startDate;
-    }
-
-    /**
      * Sets the value of id.
      *
      * @param int $id the id
@@ -238,7 +172,7 @@ class User extends BaseUser implements ThemeUser
     /**
      * Gets the value of profile_picture_file.
      *
-     * @return [type]
+     * @return string
      */
     public function getProfilePictureFile()
     {
@@ -248,7 +182,7 @@ class User extends BaseUser implements ThemeUser
     /**
      * Sets the value of profile_picture_file.
      *
-     * @param $profile_picture_file the profile picture file
+     * @param File $profile_picture_file
      *
      * @return self
      */
@@ -287,126 +221,6 @@ class User extends BaseUser implements ThemeUser
         $this->profilePicture = $profilePicture;
 
         return $this;
-    }
-
-    /**
-     * Set jobRole
-     *
-     * @param string $jobRole
-     *
-     * @return User
-     */
-    public function setJobRole($jobRole)
-    {
-        $this->jobRole = $jobRole;
-
-        return $this;
-    }
-
-    /**
-     * Get jobRole
-     *
-     * @return string
-     */
-    public function getJobRole()
-    {
-        return $this->jobRole;
-    }
-
-    /**
-     * Set education
-     *
-     * @param string $education
-     *
-     * @return User
-     */
-    public function setEducation($education)
-    {
-        $this->education = $education;
-
-        return $this;
-    }
-
-    /**
-     * Get education
-     *
-     * @return string
-     */
-    public function getEducation()
-    {
-        return $this->education;
-    }
-
-    /**
-     * Set notes
-     *
-     * @param string $notes
-     *
-     * @return User
-     */
-    public function setNotes($notes)
-    {
-        $this->notes = $notes;
-
-        return $this;
-    }
-
-    /**
-     * Get notes
-     *
-     * @return string
-     */
-    public function getNotes()
-    {
-        return $this->notes;
-    }
-
-    /**
-     * Set skills
-     *
-     * @param string $skills
-     *
-     * @return User
-     */
-    public function setSkills($skills)
-    {
-        $this->skills = $skills;
-
-        return $this;
-    }
-
-    /**
-     * Get skills
-     *
-     * @return string
-     */
-    public function getSkills()
-    {
-        return $this->skills;
-    }
-
-    /**
-     * Set address
-     *
-     * @param string $address
-     *
-     * @return User
-     */
-    public function setAddress($address)
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    /**
-     * Get address
-     *
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
     }
 
     public function getLastLogin( $human_readable = false)
@@ -490,19 +304,16 @@ class User extends BaseUser implements ThemeUser
         return $this->updateAt;
     }
 
+    /* Following functions are implemented for ThemeUser Interface  */
+
     public function getAvatar()
     {
         return $this->getProfilePicture();
     }
 
-    public function getUsername()
-    {
-        return parent::getUsername();
-    }
-
     public function getMemberSince()
     {
-        return $this->getstartDate();
+        return $this->createdAt;
     }
 
     public function isOnline()
