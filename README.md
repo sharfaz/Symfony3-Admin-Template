@@ -12,30 +12,39 @@ This project comes with pre installed Symfony recommended and useful bundles to 
 Installation is very easy and simple. Please follow the instruction below
 
 1. Clone a copy of this repository.
+
 ```
 #!
 
 git clone https://msharfaz@bitbucket.org/msharfaz/symfony3-admin-template.git
+
+
 ```
+
 
 2. Create a database **'symfony'** if not already exists.
 
+
 3. Pull the dependencies using composer. (Assume composer already installed)
+
 ```
 #!
 go to project folder
 $ cd symfony3-admin-template
 $ composer install
 //this will pull all project required dependencies
+
 ```
 
 4. Update database schema for user authentication. I have user bundle which extends FOSUserBundle functionality. All user related functionality reside inside SalexUserBundle.
+
 ```
 #!
 $ php bin/console doctrine:schema:update --force
 
 //load the sample data
 $ php bin/console doctrine:fixtures:load // press 'y' when promoted
+
 ```
 
 5. You must have Node, npm and Bower installed to use AdminBundle. Please refer corresponding websites how to install node, npm for your machine depending on OS.
