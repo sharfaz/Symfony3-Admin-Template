@@ -14,7 +14,7 @@ Installation is very easy and simple. Please follow the instruction below
 1. Clone a copy of this repository.
 
 ```
-#!
+#!linux
 
 git clone https://msharfaz@bitbucket.org/msharfaz/symfony3-admin-template.git
 
@@ -28,7 +28,7 @@ git clone https://msharfaz@bitbucket.org/msharfaz/symfony3-admin-template.git
 3. Pull the dependencies using composer. (Assume composer already installed)
 
 ```
-#!
+#!linux
 go to project folder
 $ cd symfony3-admin-template
 $ composer install
@@ -39,19 +39,23 @@ $ composer install
 4. Update database schema for user authentication. I have user bundle which extends FOSUserBundle functionality. All user related functionality reside inside SalexUserBundle.
 
 ```
-#!
+
+#!linux
 $ php bin/console doctrine:schema:update --force
 
 //load the sample data
 $ php bin/console doctrine:fixtures:load // press 'y' when promoted
 
+
 ```
 
 5. You must have Node, npm and Bower installed to use AdminBundle. Please refer corresponding websites how to install node, npm for your machine depending on OS.
 
-6. Once you installed Node.js install bowser 
+6. Once you installed Node.js install bowser
+
 ```
-#!
+
+#!linux
 $ npm install bower
 
 //if you using windows please update the bower executable path in app/config.yml file under
@@ -59,17 +63,21 @@ avanzu_admin_theme:
     bower_bin: C:\Users\{username}\AppData\Roaming\npm\bower.cmd
 
 if you using Linux/MacOSX please comment/remove the line. The default path will be used.
+
 ```
+
 
 7.Install all required Assets
 ```
-#!
+#!linux
 $ php bin/console avanzu:admin:fetch-vendor
 ```
 
 8. Finally install assets as symlink and use Assetic to dump all assets to web folder
+
 ```
-#!
+
+#!linux
 $ php bin/console assets:install --symlink
 $ php bin/console assetic:dump
 
@@ -80,4 +88,5 @@ $ php bin/console server:run
 **password:** test
 
 THATS IT!!! 
+
 ```
