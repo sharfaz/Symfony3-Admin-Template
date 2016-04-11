@@ -84,8 +84,8 @@ $ php bin/console assetic:dump
 //run built in php server to fire up the site
 $ php bin/console server:run
 
-**admin username:** admin
-**password:** test
+admin username:admin
+password: test
 
 THATS IT!!! 
 
