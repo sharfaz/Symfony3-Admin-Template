@@ -20,21 +20,16 @@ git clone https://msharfaz@bitbucket.org/msharfaz/symfony3-admin-template.git
 
 2. Create a database **'symfony'** if not already exists.
 
-
 3. Pull the dependencies using composer. (Assume composer already installed)
-
 ```
 #!
 go to project folder
-
 $ cd symfony3-admin-template
 $ composer install
-
 //this will pull all project required dependencies
 ```
 
 4. Update database schema for user authentication. I have user bundle which extends FOSUserBundle functionality. All user related functionality reside inside SalexUserBundle.
-
 ```
 #!
 $ php bin/console doctrine:schema:update --force
@@ -55,7 +50,6 @@ avanzu_admin_theme:
     bower_bin: C:\Users\{username}\AppData\Roaming\npm\bower.cmd
 
 if you using Linux/MacOSX please comment/remove the line. The default path will be used.
-
 ```
 
 7.Install all required Assets
