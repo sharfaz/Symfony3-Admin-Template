@@ -5,22 +5,17 @@ A Symfony project created on February 17, 2016, 12:17 pm.
 
 This is a starter Admin template built on latest Symfony3 build (3.0.4 at the time of writing). **This is not a BUNDLE**
 
-This project comes with pre installed Symfony recommended and useful bundles to for rapid web development. This project use [AdminThemeBundle](https://github.com/avanzu/AdminThemeBundle).
+This project comes with pre installed Symfony recommended and useful bundles to for rapid web development. This project use [AdminThemeBundle](https://github.com/avanzu/AdminThemeBundle) theme.
 
 # Installation #
 
 Installation is very easy and simple. Please follow the instruction below
 
-1. Clone a copy of this repository.
+Clone a copy of this repository.
 
-```
-#!linux
-
+```sh
 git clone https://msharfaz@bitbucket.org/msharfaz/symfony3-admin-template.git
-
-
 ```
-
 
 2. Create a database **'symfony'** if not already exists.
 
