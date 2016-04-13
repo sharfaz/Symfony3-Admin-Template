@@ -57,7 +57,7 @@ $ cd symfony3-admin-template
 $ composer install
 ```
 
-Update database schema add user table for authentication. I have user bundle which extends FOSUserBundle functionality. All user related functionality reside inside **SalexUserBundle**.
+Update database schema add user table for authentication. I have user bundle which extends FOSUserBundle functionality.
 
 ```sh
 $ php bin/console doctrine:schema:update --force
