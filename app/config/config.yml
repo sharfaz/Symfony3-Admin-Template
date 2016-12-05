@@ -38,8 +38,6 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    globals:
-        admin_skin: skin-purple
     form_themes:
         # other form themes
         - 'VichUploaderBundle:Form:fields.html.twig'
@@ -151,5 +149,5 @@ white_october_breadcrumbs:
     separator: ''
 
 avanzu_admin_theme:
-    bower_bin: C:\Users\{username}\AppData\Roaming\npm\bower.cmd # that's the default value
+    #bower_bin: C:\Users\{username}\AppData\Roaming\npm\bower.cmd # that's the default value
     #bower_bin: usr/local/bin/bower #for linux system
