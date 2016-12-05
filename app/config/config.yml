@@ -1,5 +1,6 @@
 imports:
     - { resource: parameters.yml }
+    - { resource: options.yml }
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@SalexUserBundle/Resources/config/services.yml" }
@@ -42,7 +43,8 @@ twig:
         # other form themes
         - 'VichUploaderBundle:Form:fields.html.twig'
         - 'bootstrap_3_layout.html.twig'
-
+    globals:
+        site_name: '%site_name%'
 # Doctrine Configuration
 doctrine:
     dbal:
@@ -82,10 +84,10 @@ assetic:
         cssrewrite: ~
         uglifyjs2:
             # the path to the uglifyjs executable
-            bin: %kernel.root_dir%/Resources/node_modules/.bin/uglifyjs
+            bin: '%kernel.root_dir%/Resources/node_modules/.bin/uglifyjs'
         uglifycss:
             # the path to the uglifycss executable
-            bin: %kernel.root_dir%/Resources/node_modules/.bin/uglifycss
+            bin: '%kernel.root_dir%/Resources/node_modules/.bin/uglifycss'
 
 # FOSUserBunlde configuration
 fos_user:

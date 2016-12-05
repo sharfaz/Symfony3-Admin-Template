@@ -1,7 +1,17 @@
 {% extends 'layout/loginBase.html.twig' %}
 
-{% block title %}Admin Login {% endblock %}
+{% block title %}{{ site_name }}{% endblock %}
 
 {% block page_content %}
-	{% block fos_user_content %}{% endblock %}
+	{% block fos_user_content %}
+		<div class="login-box">
+			<div class="login-logo">
+				<a href="{{ path('homepage') }}"><img src="{{ asset('bundles/app/images/logo.png') }}"></a>
+			</div><!-- /.login-logo -->
+
+			<div class="login-box-body">
+				{% block user_auth_contents %} {% endblock %}
+			</div> <!-- End of login-box-body -->
+		</div><!-- End of login-box -->
+	{% endblock %}
 {% endblock %}

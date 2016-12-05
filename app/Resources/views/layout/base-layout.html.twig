@@ -12,7 +12,7 @@
     <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>{% block title %}Your Company!{% endblock %}</title>
+    <title>{% block title %}{{ site_name }}{% endblock %}</title>
 
     {# -------------------------------------------------------------------------------------------------- STYLESHEETS #}
     {% block stylesheets %}
@@ -62,7 +62,13 @@ desired effect
             {% block avanzu_logo %}
                 <a href="{{ path('homepage') }}" class="logo">
                     <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                    {{ block('title') }}
+                    <span class="logo-mini">
+                        <!-- mini logo for sidebar mini 50x50 pixels -->
+                        <img src="{{ asset('bundles/app/images/logo-mini.jpg') }}" alt="">
+                    </span>
+                    <span class="logo-lg">
+                        {{ block('title') }}
+                    </span>
                 </a>
             {% endblock %}
             <!-- Header Navbar: style can be found in header.less -->
@@ -108,7 +114,7 @@ desired effect
         <section class="content-header">
             <h1>
                 {% block page_title %}Page Title{% endblock %}
-                <small>{% block page_subtitle %}Control panel{% endblock %}</small>
+                <small>{% block page_subtitle %}{% endblock %}</small>
             </h1>
             {% block avanzu_breadcrumb %}
                 {{ render(controller('AppBundle:Breadcrumb:breadcrumb', {'request':app.request, 'title' : block('page_title')})) }}

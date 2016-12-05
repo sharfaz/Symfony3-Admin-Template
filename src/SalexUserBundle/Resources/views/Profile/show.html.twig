@@ -3,6 +3,7 @@
 {% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
 
 {% block page_title %} Profile {% endblock %}
+{% block page_subtitle %} {{ user.getName() }} {% endblock %}
 
 {% block page_content %}
 
@@ -80,7 +81,7 @@
                       <div class="form-group">
                         <label for="inputExperience" class="col-sm-2 control-label">Locked</label>
                         <div class="col-sm-1">
-                          {% if user.isLocked() %}
+                          {% if user.accountNonLocked %}
                             <p class="form-text" title="Account is locked" data-toggle="tooltip" data-placement="right"><i class="fa fa-fw fa-lock"></i></p>
                           {% else %}
                             <p class="form-text" title="Account is not locked" data-toggle="tooltip" data-placement="right"><i class="fa fa-fw fa-unlock-alt"></i></p>
@@ -91,7 +92,7 @@
                       <div class="form-group">
                         <label for="inputExperience" class="col-sm-2 control-label">Expired</label>
                         <div class="col-sm-1">
-                          {% if user.isExpired() %}
+                          {% if user.accountNonExpired %}
                             <p class="form-text"><span class="label label-danger">Expired</span></p>
                           {% else %}
                             <p class="form-text"><span class="label label-info">Not Expired</span></i></p>
