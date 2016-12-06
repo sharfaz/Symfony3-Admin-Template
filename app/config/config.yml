@@ -45,6 +45,7 @@ twig:
         - 'bootstrap_3_layout.html.twig'
     globals:
         site_name: '%site_name%'
+        footer_url: '%footer_url%'
 # Doctrine Configuration
 doctrine:
     dbal:

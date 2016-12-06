@@ -15,7 +15,7 @@
             {{ macro.avatar(user_image, user.username) }}
             <p>
                 {{user.getName()}}
-                <small>{{ 'Member since %date%'|trans({'%date%': user.memberSince|date('m.Y') }, 'AvanzuAdminTheme') }}</small>
+                <small>{{ 'Last Login %date%'|trans({'%date%': user.lastLogin|date('d.m.Y g:i A') }, 'AvanzuAdminTheme') }}</small>
             </p>
         </li>
         <!-- Menu Body -->
